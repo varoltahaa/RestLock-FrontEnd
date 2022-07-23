@@ -1,0 +1,9 @@
+<ul class="list-group">
+    <li 
+    (click)="setCurrentPlaceCategory(placeCategory)" 
+    *ngFor="let placeCategory of placeCategories" 
+    [class]="getCurrentPlaceCategoryClass(placeCategory)">{{placeCategory.name}}
+  </li>
+  </ul>
+
+  <h5 *ngIf="currentPlaceCategory">{{currentPlaceCategory.name}}</h5>
