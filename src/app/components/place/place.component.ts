@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Place } from 'src/app/models/place';
 import { PlaceService } from 'src/app/services/place.service';
 
@@ -10,12 +11,21 @@ import { PlaceService } from 'src/app/services/place.service';
 export class PlaceComponent implements OnInit {
 
   places:Place[] = [];
-
   dataLoaded = false;
-  constructor(private placeService:PlaceService) { }
+  filterText="";
+
+  constructor(private placeService:PlaceService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getPlaces();
+    this.activatedRoute.params.subscribe((params)=>{
+      if(params["categoryId"]){
+        this.getAllByCategoryId(params["categoryId"])
+      }
+      else{
+        this.getPlaces();
+      }
+    })
+
   }
 
   getPlaces(){
@@ -24,5 +34,14 @@ export class PlaceComponent implements OnInit {
       this.dataLoaded = true;
     })
   }
+
+
+  getAllByCategoryId(placeCategoryId:number){
+    this.placeService.getAllByCategoryId(placeCategoryId).subscribe(response => {
+      this.places = response.data
+      this.dataLoaded = true;
+    })
+  }
+
 
 }

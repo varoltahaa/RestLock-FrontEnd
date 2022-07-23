@@ -1,9 +1,18 @@
-<ul class="list-group">
-    <li 
+<!-- <ul  class="list-group list-group-horizontal">
+    <li class="list-group-item" routerLink="/places/placeCategory/{{placeCategory.placeCategoryId}}"
     (click)="setCurrentPlaceCategory(placeCategory)" 
     *ngFor="let placeCategory of placeCategories" 
     [class]="getCurrentPlaceCategoryClass(placeCategory)">{{placeCategory.name}}
   </li>
-  </ul>
+  </ul> -->
 
-  <h5 *ngIf="currentPlaceCategory">{{currentPlaceCategory.name}}</h5>
+<div class="container">
+    <button class="badge " routerLink="/places/placeCategory/{{placeCategory.placeCategoryId}}"
+  (click)="setCurrentPlaceCategory(placeCategory)" 
+  *ngFor="let placeCategory of placeCategories" type="button" class="btn btn-outline-dark">{{placeCategory.name}}</button>
+</div>
+
+      
+  
+
+

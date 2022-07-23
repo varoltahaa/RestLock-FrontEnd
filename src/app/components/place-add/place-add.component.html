@@ -1,0 +1,75 @@
+<div class="content">
+
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><h5 class="title">Mekan Ekle</h5></div>
+            <div class="card-body">
+                <form [formGroup]="placeAddForm" action="">
+                    <div class="mb-3">
+                        <div   class="form-group">
+                            <label style="font-weight:bold;" for="userId">User Id</label>
+                            <input  type="number" id="userId" formControlName="userId" class="form-control"   placeholder="User ıd"/> 
+                        </div>
+                        </div>
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <label style="font-weight:bold;" for="placeCategoryId">Mekan Kategorisi</label>
+                            <div class="form-group">
+                              <select  class="form-control" formControlName="placeCategoryId">
+                                <option *ngFor="let placeCategory of placeCategories"  [ngValue]="placeCategory.placeCategoryId" >{{placeCategory.name}}</option>
+                              </select>
+                            </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group">
+                        <label style="font-weight:bold;" for="placeName">Mekan Adı</label>
+                        <input type="text" id="placeName" formControlName="placeName" class="form-control" placeholder="Mekan Adı"/> 
+                    </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group">
+                        <label style="font-weight:bold;" for="placePhoneNumber">Telefon Numarası</label>
+                        <input type="text" id="placePhoneNumber" formControlName="placePhoneNumber" class="form-control" placeholder="Telefon Numarası"/> 
+                    </div>
+                    </div>
+                    <div class="mb-3">
+                    <div class="form-group">
+                        <label style="font-weight:bold;" for="placeAddress">Adres</label>
+                        <input type="text" id="placeAddress" formControlName="placeAddress" class="form-control" placeholder="Adres"/> 
+                    </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group">
+                        <label style="font-weight:bold;" for="openTime">Açılış Saati</label>
+                        <input type="datetime" id="openTime" formControlName="openTime" class="form-control" placeholder="00:00:00"/> 
+                    </div>
+                    </div>
+                    <div class="mb-3">
+                    <div class="form-group">
+                        <label style="font-weight:bold;" for="closeTime">Kapanış Saati</label>
+                        <input type="datetime" id="closeTime" formControlName="closeTime" class="form-control" placeholder="00:00:00"/> 
+                    </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label style="font-weight:bold;" for="uploadImage">Resim Yükle</label>
+                            <input type="file" id="description"  class="form-control" placeholder="Resim Yükle"/> 
+                        </div>
+                        </div>
+
+                    <div class="mb-3">
+                    <div class="form-group">
+                        <label style="font-weight:bold;" for="description">Açıklama</label>
+                        <textarea type="text" id="description" formControlName="description" class="form-control" rows="3" placeholder="Açıklama"> </textarea>
+                    </div>
+                    </div>
+                
+            </div>
+        </form>
+            <div class="card-footer" class="d-grid gap-2">
+                <button type="button" class="btn btn-primary btn-lg" (click)="add()">Ekle</button>
+            </div>
+        </div>
+    </div>
+</div>

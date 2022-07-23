@@ -1,27 +1,28 @@
-<div  *ngIf="dataLoaded==false" class="spinner-border" role="status">
-    <span class="visually-hidden">Loading...</span>
+<app-carousel></app-carousel>
+<app-place-category></app-place-category>
+<div *ngIf="dataLoaded==false" class="" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+
+
+
+<div class="container">
+  <input style="margin-bottom:1%" class="form-control" [(ngModel)]="filterText" type="text" placeholder="Ara" aria-label="default input example">
+    <div  class="row">
+  <div *ngFor="let place of places | filterPipe:filterText"   class="col-sm-4 mb-4 ">
+    <div class="card"> 
+          <img src="https://www.yegenmetal.com/Content/img/resimYok.jpg" class="card-img-top" alt="">
+    <div class="card-body">
+      <h5 class="card-title">{{place.placeName |uppercase }} </h5>
+      <p class="card-text">{{place.description}}</p>
+      <button  type="button" routerLink="placedetail/{{place.placeId}}" class="btn btn-info"> Detaylar</button>
+    </div>
+    </div>
   </div>
+</div>
+</div>
 
-<table class="table table-striped">
-    <thead >
-        <tr>
-            <th>Mekan Adı</th>
-            <th>Telefon Numarası</th>
-            <th>Adres</th>
-            <th>Açılış Saati</th>
-            <th>Kapanış Saati</th>
-            <th>Açıklama</th>
-        </tr>
-    </thead>
-    <tbody>    
-        <tr *ngFor="let place of places">
-        <td>{{place.placeName}}</td>
-        <td>{{place.placePhoneNumber}}</td>
-        <td>{{place.placeAddress}}</td>
-        <td>{{place.openTime}}</td>
-        <td>{{place.closeTime}}</td>
-        <td>{{place.description}}</td>
-    </tr>
-</tbody>
 
-</table>
+
+
