@@ -1,128 +1,201 @@
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-crossorigin=""/>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+  integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+  crossorigin=""
+/>
 
-<body style="margin:5%">
-
-
-    
-    <main class="container">
-      <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div *ngFor="let place of placeImages" class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="{{place.imagePath}}" class="d-block w-100" alt="...">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+<body style="margin: 5%">
+  <main class="container">
+    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+      <div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div *ngFor="let place of placeImages" class="carousel-inner">
+          <div class="carousel-item active">
+            <img [src]="place.imagePath" class="d-block w-100" alt="..." />
           </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >s
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-    
-      <div class="row mb-2">
-        <div class="col-md-6">
-          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-              <h3 class="mb-0" >{{currentPlaceDetails?.placeName}}</h3>
-              <div class="mb-1 text-muted">Açılış: {{currentPlaceDetails?.openTime}}</div>
-              <div class="mb-1 text-muted">Kapanış: {{currentPlaceDetails?.closeTime}}</div><br>
-              <div class="mb-1 text bi bi-telephone"> {{currentPlaceDetails?.placePhoneNumber}}</div> 
-              <p class="card-text mb-auto bi bi-geo-alt"> {{currentPlaceDetails?.placeAddress}}</p>
-            </div>
-            <div class="col-auto d-none d-lg-block">
-              <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+    </div>
 
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div
+          class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+        >
+          <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="mb-0">{{ currentPlaceDetails?.placeName }}</h3>
+            <div class="mb-1 text-muted">
+              Açılış: {{ currentPlaceDetails?.openTime }}
             </div>
+            <div class="mb-1 text-muted">
+              Kapanış: {{ currentPlaceDetails?.closeTime }}
+            </div>
+            <br />
+            <div class="mb-1 text bi bi-telephone">
+              {{ currentPlaceDetails?.placePhoneNumber }}
+            </div>
+            <p class="card-text mb-auto bi bi-geo-alt">
+              {{ currentPlaceDetails?.placeAddress }}
+            </p>
           </div>
-        </div>
-        <div class="col-md-6">
-          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div id="map" class="col p-4 d-flex flex-column position-static">
-              <!-- Harita Burada -->
-            </div>
-            <div class="col-auto d-none d-lg-block">
-             
-    
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="row g-5">
-        <div class="col-md-8">
-      <ul class="nav nav-tabs">
-  <li style="margin-right:5%" class="nav-item">
-    <a style="font-style:italic" class="nav-link active" aria-current="page" href="#">Genel Bakış</a>
-  </li>
-  <li style="margin-right:5%" class="nav-item">
-    <a style="font-style:italic" class="nav-link bi bi-camera  " href="#"> Fotoğraflar</a>
-  </li>
-  <li style="margin-right:5%" class="nav-item">
-    <a style="font-style:italic" class="nav-link bi bi-pencil-square" href="#"> Yorumlar</a>
-  </li>
-  <li  class="nav-item">
-    <a style="font-style:italic" class="nav-link bi bi-list" href="#"> Menü</a>
-  </li>
-</ul>
-          
-    
-  
-    
-          <article class="blog-post">
-            <h2 class="blog-post-title mb-1">Another blog post</h2>
-            
-          </article>
-    
-    
-    
-        </div>
-    
-        <div class="col-md-4">
-          <div class="position-sticky" style="top: 2rem;">
-            <div class="p-4 mb-3 bg-light rounded">
-              <h4 class="fst-italic">Mekan Hakkında</h4>
-              <p class="mb-0"> {{currentPlaceDetails?.description}}</p>
-            </div>
-    
-            <div class="p-4">
-              <h4 class="fst-italic">Archives</h4>
-              <ol class="list-unstyled mb-0">
-                <li><a href="#">March 2021</a></li>
-                <li><a href="#">February 2021</a></li>
-                <li><a href="#">January 2021</a></li>
-                <li><a href="#">December 2020</a></li>
-                <li><a href="#">November 2020</a></li>
-                <li><a href="#">October 2020</a></li>
-                <li><a href="#">September 2020</a></li>
-                <li><a href="#">August 2020</a></li>
-                <li><a href="#">July 2020</a></li>
-                <li><a href="#">June 2020</a></li>
-                <li><a href="#">May 2020</a></li>
-                <li><a href="#">April 2020</a></li>
-              </ol>
-            </div>
-    
-            <div class="p-4">
-              <h4 class="fst-italic">Sosyal Medya Hesapları</h4>
-              <ol class="list-unstyled">
-                <li><a style="text-decoration:none" class="bi bi-laptop" href="#">  Web Sitesi</a></li>
-                <li><a style="text-decoration:none"  class="bi bi-twitter" href="#">  Twitter</a></li>
-                <li><a style="text-decoration:none"  class="bi bi-facebook" href="#">  Facebook</a></li>
-                <li><a style="text-decoration:none"  class="bi bi-instagram" href="#">  İnstangram</a></li>
-              </ol>
-            </div>
+          <div class="col-auto d-none d-lg-block">
+            <svg
+              class="bd-placeholder-img"
+              width="200"
+              height="250"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Placeholder: Thumbnail"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
+            </svg>
           </div>
         </div>
       </div>
-    
-    </main>
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+      <div class="col-md-6">
+        <div
+          class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+        >
+          <div id="map" class="col p-4 d-flex flex-column position-static">
+            <!-- Harita Burada -->
+          </div>
+          <div class="col-auto d-none d-lg-block"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-8">
+        <ul class="nav nav-tabs">
+          <li style="margin-right: 5%" class="nav-item">
+            <a
+              style="font-style: italic"
+              class="nav-link active"
+              aria-current="page"
+              href="#"
+              >Genel Bakış</a
+            >
+          </li>
+          <li style="margin-right: 5%" class="nav-item">
+            <a
+              style="font-style: italic"
+              class="nav-link bi bi-camera"
+              href="#"
+            >
+              Fotoğraflar</a
+            >
+          </li>
+          <li style="margin-right: 5%" class="nav-item">
+            <a
+              style="font-style: italic"
+              class="nav-link bi bi-pencil-square"
+              href="#"
+            >
+              Yorumlar</a
+            >
+          </li>
+          <li class="nav-item">
+            <a style="font-style: italic" class="nav-link bi bi-list" href="#">
+              Menü</a
+            >
+          </li>
+        </ul>
+
+        <article class="blog-post">
+          <h2 class="blog-post-title mb-1">Another blog post</h2>
+        </article>
+      </div>
+
+      <div class="col-md-4">
+        <div class="position-sticky" style="top: 2rem">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4 class="fst-italic">Mekan Hakkında</h4>
+            <p class="mb-0">{{ currentPlaceDetails?.description }}</p>
+          </div>
+
+          <div class="p-4">
+            <h4 class="fst-italic">Archives</h4>
+            <ol class="list-unstyled mb-0">
+              <li><a href="#">March 2021</a></li>
+              <li><a href="#">February 2021</a></li>
+              <li><a href="#">January 2021</a></li>
+              <li><a href="#">December 2020</a></li>
+              <li><a href="#">November 2020</a></li>
+              <li><a href="#">October 2020</a></li>
+              <li><a href="#">September 2020</a></li>
+              <li><a href="#">August 2020</a></li>
+              <li><a href="#">July 2020</a></li>
+              <li><a href="#">June 2020</a></li>
+              <li><a href="#">May 2020</a></li>
+              <li><a href="#">April 2020</a></li>
+            </ol>
+          </div>
+
+          <div class="p-4">
+            <h4 class="fst-italic">Sosyal Medya Hesapları</h4>
+            <ol class="list-unstyled">
+              <li>
+                <a style="text-decoration: none" class="bi bi-laptop" href="#">
+                  Web Sitesi</a
+                >
+              </li>
+              <li>
+                <a style="text-decoration: none" class="bi bi-twitter" href="#">
+                  Twitter</a
+                >
+              </li>
+              <li>
+                <a
+                  style="text-decoration: none"
+                  class="bi bi-facebook"
+                  href="#"
+                >
+                  Facebook</a
+                >
+              </li>
+              <li>
+                <a
+                  style="text-decoration: none"
+                  class="bi bi-instagram"
+                  href="#"
+                >
+                  İnstangram</a
+                >
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script
+    src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
     integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-    crossorigin=""></script>
-      </body>
+    crossorigin=""
+  ></script>
+</body>

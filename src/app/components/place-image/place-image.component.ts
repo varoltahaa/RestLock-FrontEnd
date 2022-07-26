@@ -19,9 +19,7 @@ export class PlaceImageComponent implements OnInit {
   constructor(private httpClient:HttpClient, private activatedRoute:ActivatedRoute, private placeImageService:PlaceImageService, private tostrService:ToastrService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params)=>{
-      this.getByPlaceId(params["placeId"])
-    })
+
   }
 
   createPlaceImageAddForm(){
@@ -44,12 +42,7 @@ export class PlaceImageComponent implements OnInit {
 
   }
 
-  getByPlaceId(placeId:number){
-    this.placeImageService.getByPlaceId(placeId).subscribe((response)=>{
-      console.log(response)
-      this.placeImage = response.data
-    })
-  }
+
 
   getPlace(){
     this.placeImageService.getPlaceImages().subscribe((response)=>{

@@ -8,7 +8,11 @@
 
 
 <div class="container">
+  
   <input style="margin-bottom:1%" class="form-control" [(ngModel)]="filterText" type="text" placeholder="Ara" aria-label="default input example">
+  <small *ngIf="filterText">Şu an <strong>{{filterText}} </strong> aradınız</small>
+  <h3 *ngIf="places; else: noPlaces" style="text-align:center">Mekan Listesi</h3>
+  <ng-template #noPlaces> <h3>Mekanlar Listelenemedi</h3> </ng-template>
     <div  class="row">
   <div *ngFor="let place of places | filterPipe:filterText"   class="col-sm-4 mb-4 ">
     <div class="card"> 
