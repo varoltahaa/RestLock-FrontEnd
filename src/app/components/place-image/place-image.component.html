@@ -1,2 +1,23 @@
+<form [formGroup]="placeImageAddForm">
+    <div class="container">
+            <div style="margin-top:10%"  class="mb-3">
+        <div class="form-group">
+            <label style="font-weight:bold;" for="imagePath">Mekan Id</label>
+            <input type="text" id="imagePath" formControlName="placeId" class="form-control" placeholder="Mekan Id"/> 
+        </div>
+        </div>
+    <div class="mb-3">
+        <div class="form-group">
+            <label style="font-weight:bold;" for="uploadImage">Resim Yükle</label>
+            <input type="file"  id="uploadImage" formControlName="file" (change)="handleFileInput($event)" class="form-control" placeholder="Resim Yükle"/> 
+        </div>
+        </div>
+    </div>
 
+
+</form>
+<div class="container">
+    <button type="button" class="btn btn-primary btn-lg" (click)="uploadFileToActivity()">Ekle</button>
+  </div>
+    
 

@@ -1,4 +1,4 @@
-<div class="content">
+<div style="margin-top:5%" class="container">
 
 
     <div class="col-md-12">
@@ -51,12 +51,12 @@
                         <input type="datetime" id="closeTime" formControlName="closeTime" class="form-control" placeholder="00:00:00"/> 
                     </div>
                     </div>
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label style="font-weight:bold;" for="uploadImage">Resim Yükle</label>
-                            <input type="file" id="description"  class="form-control" placeholder="Resim Yükle"/> 
-                        </div>
-                        </div>
+    
+                        <div  class="col p-4 d-flex flex-column position-static">
+                            <input type="number" id="closeTime"  class="form-control" placeholder="Latitude"/> 
+                            <input type="number" id="closeTime"  class="form-control" placeholder="longitude"/> 
+                            <button (click)="getCoords()">Konumu Getir</button>
+                          </div>
 
                     <div class="mb-3">
                     <div class="form-group">

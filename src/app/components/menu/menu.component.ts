@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Menu } from 'src/app/models/menu';
 import { MenuDetail } from 'src/app/models/menuDetail';
@@ -11,6 +11,7 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class MenuComponent implements OnInit {
 
+  @Input() name:any
 
   menuDetails:MenuDetail[]=[];
   menus:Menu[]=[];

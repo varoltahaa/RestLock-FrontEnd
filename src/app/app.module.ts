@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SwiperModule } from 'swiper/angular';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +41,7 @@ import Swiper from 'swiper';
     PlaceImageComponent,
     AdminComponent,
     MenuComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import Swiper from 'swiper';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     SwiperModule,
+    FileUploadModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),

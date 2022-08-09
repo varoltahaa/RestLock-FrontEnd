@@ -11,6 +11,7 @@ import { PlaceCategoryServiceService } from 'src/app/services/place-category-ser
 import { PlaceImageService } from 'src/app/services/place-ımage.service';
 import { PlaceService } from 'src/app/services/place.service';
 import { UserService } from 'src/app/services/user.service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-place-add',
@@ -18,13 +19,15 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./place-add.component.css']
 })
 export class PlaceAddComponent implements OnInit {
-
+  map: any;
+  marker: any;
+  pos: string;  
  
-  placeImage:PlaceImage[]=[];
+  latitude:number;
+  longitude:number;
   placeImageAddForm:FormGroup;
   placeAddForm:FormGroup;
   placeCategories:PlaceCategory[];
-  logins:Login[];
   users:User[];
   email = this.localStoreService.get('email');
   
@@ -44,7 +47,9 @@ export class PlaceAddComponent implements OnInit {
       placeAddress:["",Validators.required],
       openTime:["",Validators.required],
       closeTime:["",Validators.required],
-      description:["",Validators.required]
+      description:["",Validators.required],
+      latitude:["",Validators.required],
+      longitude:["",Validators.required]
     })
   }
 
@@ -62,6 +67,17 @@ export class PlaceAddComponent implements OnInit {
       })
     }
   }
+
+
+  getCoords(){
+      navigator.geolocation.getCurrentPosition(function(pos:any){
+        let x= pos.coords.latitude
+        let y= pos.coords.longitude
+        let speed =pos.coords.accuracy
+        console.log(x,y,speed)
+      }.bind(this))
+}
+
   getUser(){
     this.userService.getUser().subscribe(response=>{
       this.users = response.data
@@ -81,6 +97,34 @@ export class PlaceAddComponent implements OnInit {
     }else{
       return false;
     }
+  }
+  
+
+
+  getLocation(){
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+    });
+    let map = L.map('map', {
+      center: [38 , 39],
+      zoom: 8,
+    });
+    L.marker([38, 39]).bindPopup('').addTo(map);
+
+    const tiles = L.tileLayer(
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {
+        maxZoom: 18,
+        minZoom: 3,
+      }
+    );
+    tiles.addTo(map);
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 1);
   }
 
 }

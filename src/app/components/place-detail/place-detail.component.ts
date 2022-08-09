@@ -9,12 +9,17 @@ import { PlaceImage } from 'src/app/models/placeImage';
 import { PlaceImageService } from 'src/app/services/place-ımage.service';
 import { tap } from 'rxjs';
 
+
+
 @Component({
   selector: 'app-place-detail',
   templateUrl: './place-detail.component.html',
   styleUrls: ['./place-detail.component.css'],
 })
 export class PlaceDetailComponent implements OnInit {
+  
+  
+  count = 0
   map: any;
   marker: any;
   pos: string;
@@ -36,49 +41,50 @@ export class PlaceDetailComponent implements OnInit {
         this.getImageById(params['placeId']);
       }
     });
-    this.getLocation();
   }
 
-  getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (pos) {
-        let latitude = pos.coords.latitude;
-        let longitude = pos.coords.longitude;
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          id: 'mapbox/streets-v11',
-          tileSize: 512,
-          zoomOffset: -1,
-        });
-        let map = L.map('map', {
-          center: [latitude, longitude],
-          zoom: 8,
-        });
-        L.marker([latitude, longitude]).bindPopup('').addTo(map);
-
-        const tiles = L.tileLayer(
-          'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-          {
-            maxZoom: 18,
-            minZoom: 3,
-          }
-        );
-        tiles.addTo(map);
-        setTimeout(() => {
-          map.invalidateSize();
-        }, 1);
-      });
-    } else {
-      this.toastrService.error(
-        'Tarayıcınız bu özelliği desteklemiyor',
-        'Başarısız'
-      );
-    }
-  }
 
   getPlaceById(placeId: number) {
     this.placeService.getPlaceById(placeId).subscribe((response) => {
       this.currentPlaceDetails = response.data;
+
+      let x = this.currentPlaceDetails.latitude
+    let y = this.currentPlaceDetails.longitude
+    let placeAddress = this.currentPlaceDetails.placeAddress
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+    });
+
+
+    let map = L.map('map', {
+      center: [x , y],
+      zoom: 15,
+    });
+
+
+    
+    L.marker([x, y]).bindPopup(placeAddress).addTo(map);
+    
+
+    const tiles = L.tileLayer(
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {
+        maxZoom: 18,
+        minZoom: 3,
+      }
+    );
+
+
+
+    tiles.addTo(map);
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 1);
+
+
     });
   }
 
@@ -88,7 +94,8 @@ export class PlaceDetailComponent implements OnInit {
       .pipe(tap((response) => console.log(JSON.stringify(response))))
       .subscribe((response) => {
         this.placeImages = response.data;
-        console.log(response);
       });
   }
+
+
 }

@@ -15,9 +15,14 @@ export class PlaceImageService {
   apiUrl = 'https://localhost:44333/api/';
   constructor(private httpClient: HttpClient) {}
 
-  add(placeImage: PlaceImage): Observable<ResponseModel> {
+  add(fileToUpload: File,placeId:number): Observable<boolean> {
+    const endpoint = 'https://localhost:44333/api/PlaceImages/add';
+    const formData: FormData = new FormData();
+    formData.append('placeId',placeId.toString())
+    formData.append('file', fileToUpload);
+    formData.append('imagePath',fileToUpload.name);
     let newPath = this.apiUrl + 'PlaceImages/add';
-    return this.httpClient.post<ResponseModel>(newPath, placeImage);
+    return this.httpClient.post<boolean>(endpoint, formData);
   }
 
   getPlaceImages(): Observable<ListResponseModel<PlaceImage>> {

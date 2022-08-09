@@ -1,5 +1,4 @@
 import { Time } from "@angular/common";
-import { PlaceImage } from "./placeImage";
 
 export interface Place{
     placeId:number;
@@ -11,6 +10,6 @@ export interface Place{
     openTime:Date;
     closeTime:Date;
     description:string;
-    latitude:string;
-    longitude:string;
+    latitude:number;
+    longitude:number;
 }

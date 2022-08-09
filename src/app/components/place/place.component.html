@@ -19,7 +19,7 @@
           <img src="https://www.yegenmetal.com/Content/img/resimYok.jpg" class="card-img-top" alt="">
     <div class="card-body">
       <h5 class="card-title">{{place.placeName |uppercase }} </h5>
-      <p class="card-text">{{place.description}}</p>
+      <p class="card-text">{{place?.description}}</p>
       <button  type="button" routerLink="placedetail/{{place.placeId}}" class="btn btn-info"> Detaylar</button>
     </div>
     </div>
