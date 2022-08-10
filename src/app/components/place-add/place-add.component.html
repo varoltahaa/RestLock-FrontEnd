@@ -52,13 +52,13 @@
                     </div>
                     </div>
     
-                        <div  class="col p-4 d-flex flex-column position-static">
-                            <input type="number" id="closeTime"  class="form-control" placeholder="Latitude"/> 
-                            <input type="number" id="closeTime"  class="form-control" placeholder="longitude"/> 
-                            <button (click)="getCoords()">Konumu Getir</button>
+                        <div  class="mb-3; form-group">
+                            <input  type="number" id="closeTime"  class="form-control" placeholder="Latitude"/> 
+                            <input style="margin-top:1%" type="number" id="closeTime"  class="form-control" placeholder="Longitude"/> 
+                            <button style="margin-top:1%" class="btn btn-info" (click)="getCoords()">Konumu Getir</button>
                           </div>
 
-                    <div class="mb-3">
+                    <div style="margin-top:1%" class="mb-3">
                     <div class="form-group">
                         <label style="font-weight:bold;" for="description">Açıklama</label>
                         <textarea type="text" id="description" formControlName="description" class="form-control" rows="3" placeholder="Açıklama"> </textarea>

@@ -26,11 +26,23 @@
         </button>
 
 
-        <div  class="carousel-inner">
-          <div  *ngFor="let place of placeImages; let index = index"  class="carousel-item active">
-            <img  style="max-width: 350px; height:auto;" src="{{place.imagePath}}" class="d-block w-100" alt="..." />
-          </div>
-        </div>
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div *ngFor="let place of placeImages" class="carousel-item active" data-bs-interval="10000">
+      <img src="{{place.imagePath}}" width="auto" height="500px" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
 
         <button
@@ -97,43 +109,12 @@
 
     <div class="row g-5">
       <div class="col-md-8">
-        <ul class="nav nav-tabs">
-          <li style="margin-right: 5%" class="nav-item">
-            <a
-              style="font-style: italic"
-              class="nav-link active"
-              aria-current="page"
-              href="#"
-              >Genel Bakış</a
-            >
-          </li>
-          <li style="margin-right: 5%" class="nav-item">
-            <a
-              style="font-style: italic"
-              class="nav-link bi bi-camera"
-              href="#"
-            >
-              Fotoğraflar</a
-            >
-          </li>
-          <li style="margin-right: 5%" class="nav-item">
-            <a
-              style="font-style: italic"
-              class="nav-link bi bi-pencil-square"
-              href="#"
-            >
-              Yorumlar</a
-            >
-          </li>
-          <li class="nav-item">
-            <a style="font-style: italic" class="nav-link bi bi-list" href="#">Menü</a>
-          </li>
-          s
-        </ul>
-
-        <article class="blog-post">
-          <h2 class="blog-post-title mb-1">Another blog post</h2>
-        </article>
+        <mat-tab-group mat-align-tabs="start"  >
+          <mat-tab label="Genel Bakış"> Content 1 </mat-tab>
+          <mat-tab label="Fotoğraflar"> <app-place-image-list></app-place-image-list> </mat-tab>
+          <mat-tab label="Yorumlar"> <app-comment></app-comment> </mat-tab>
+          <mat-tab label="Menü"> <app-menu></app-menu> </mat-tab>
+        </mat-tab-group>
       </div>
 
       <div class="col-md-4">

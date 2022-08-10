@@ -5,6 +5,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SwiperModule } from 'swiper/angular';
 import { FileUploadModule } from 'ng2-file-upload';
+import { MatTabsModule} from '@angular/material/tabs'
+import {MatCardModule} from '@angular/material/card';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +27,8 @@ import { PlaceImageComponent } from './components/place-image/place-image.compon
 import { AdminComponent } from './components/admin/admin.component';
 import { MenuComponent } from './components/menu/menu.component';
 import Swiper from 'swiper';
+import { CommentComponent } from './components/comment/comment.component';
+import { PlaceImageListComponent } from './components/place-image-list/place-image-list.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +46,8 @@ import Swiper from 'swiper';
     PlaceImageComponent,
     AdminComponent,
     MenuComponent,
+    CommentComponent,
+    PlaceImageListComponent,
     
   ],
   imports: [
@@ -52,6 +59,8 @@ import Swiper from 'swiper';
     BrowserAnimationsModule,
     SwiperModule,
     FileUploadModule,
+    MatTabsModule,
+    MatCardModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),
