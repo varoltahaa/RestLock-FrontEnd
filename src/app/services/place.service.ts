@@ -30,6 +30,11 @@ export class PlaceService {
     return this.httpClient.get<ListResponseModel<Place>>(newPath)
   }
 
+  getPlaceByUserId(userId:number):Observable<ListResponseModel<Place>>{
+    let newPath = this.apiUrl + "places/getplacebyuserid?userId="+userId
+    return this.httpClient.get<ListResponseModel<Place>>(newPath)
+  }
+
   add(place:Place):Observable<ResponseModel>{
     let newPath = this.apiUrl+"places/add"
     return this.httpClient.post<ResponseModel>(newPath,place)

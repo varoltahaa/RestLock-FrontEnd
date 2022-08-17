@@ -28,7 +28,7 @@
 
 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div *ngFor="let place of placeImages" class="carousel-item active" data-bs-interval="10000">
+    <div *ngFor="let place of placeImages; let i = index"  [ngClass]="i != 0 ? 'carousel-item' : 'carousel-item active'" data-bs-interval="10000">
       <img src="{{place.imagePath}}" width="auto" height="500px" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
       </div>
@@ -63,9 +63,9 @@
           class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
         >
           <div class="col p-4 d-flex flex-column position-static">
-            <h3 class="mb-0">{{ currentPlaceDetails?.placeName }}</h3>
+            <h1 class="mb-1">{{ currentPlaceDetails?.placeName |uppercase }}</h1>
             <div class="mb-1 text-muted">
-              Açılış: {{ currentPlaceDetails?.openTime }}
+              Açılış: {{ currentPlaceDetails?.openTime  }}
             </div>
             <div class="mb-1 text-muted">
               Kapanış: {{ currentPlaceDetails?.closeTime }}
@@ -102,8 +102,10 @@
           <div id="map" class="col p-4 d-flex flex-column position-static">
             <!-- Harita Burada -->
           </div>
+          
           <div class="col-auto d-none d-lg-block"></div>
         </div>
+        <a mat-raised-button href="https://www.google.com/maps/dir/?api=1&origin={{latitude}},{{longitude}}&destination={{currentPlaceDetails?.latitude}},{{currentPlaceDetails?.longitude}}"  target="_blank">Rota Oluştur</a>      
       </div>
     </div>
 
@@ -112,8 +114,8 @@
         <mat-tab-group mat-align-tabs="start"  >
           <mat-tab label="Genel Bakış"> Content 1 </mat-tab>
           <mat-tab label="Fotoğraflar"> <app-place-image-list></app-place-image-list> </mat-tab>
-          <mat-tab label="Yorumlar"> <app-comment></app-comment> </mat-tab>
-          <mat-tab label="Menü"> <app-menu></app-menu> </mat-tab>
+          <mat-tab label="Yorumlar"> <app-comment [placeId]="placeId"></app-comment> </mat-tab>
+          <mat-tab label="Menü"> <app-menu> </app-menu> </mat-tab>
         </mat-tab-group>
       </div>
 
@@ -124,23 +126,6 @@
             <p class="mb-0">{{ currentPlaceDetails?.description }}</p>
           </div>
 
-          <div class="p-4">
-            <h4 class="fst-italic">Archives</h4>
-            <ol class="list-unstyled mb-0">
-              <li><a href="#">March 2021</a></li>
-              <li><a href="#">February 2021</a></li>
-              <li><a href="#">January 2021</a></li>
-              <li><a href="#">December 2020</a></li>
-              <li><a href="#">November 2020</a></li>
-              <li><a href="#">October 2020</a></li>
-              <li><a href="#">September 2020</a></li>
-              <li><a href="#">August 2020</a></li>
-              <li><a href="#">July 2020</a></li>
-              <li><a href="#">June 2020</a></li>
-              <li><a href="#">May 2020</a></li>
-              <li><a href="#">April 2020</a></li>
-            </ol>
-          </div>
 
           <div class="p-4">
             <h4 class="fst-italic">Sosyal Medya Hesapları</h4>

@@ -1,27 +1,50 @@
 
-<mat-card class="example-card">
+<mat-card style="margin-top:3%" *ngFor="let comments of comment" class="example-card">
     <mat-card-title-group>
-      <mat-card-title>Ad Soyad</mat-card-title>
-      <mat-card-subtitle>Mail</mat-card-subtitle>
+      <mat-card-title>{{comments.userName}}</mat-card-title>
+      <mat-card-subtitle>{{comments.eMail}}</mat-card-subtitle>
+      <mat-card-subtitle type="dat">{{comments.date | date: 'dd.MM.yyyy'}}</mat-card-subtitle>
       <img mat-card-sm-image src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" >
     </mat-card-title-group>
+    <!-- <button [ngClass]="{'liked':isLiked}" (click)="likeTheButton()" mat-icon-button color="warn" matBadge="{{likeCount}}" aria-label="Example icon button with a heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button> -->
     <mat-card-content>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, fugiat. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, non.
+      {{comments.comments}}
     </mat-card-content>
 
+  </mat-card>
+  
 
-<div  style="margin-top:4%" class="mb-4">
+  
+
+
+    
+
+<form [formGroup]="commentAddForm" >
+
+  <div  style="margin-top:4%" class="mb-4">
     <label for="name" class="form-label">Ad Soyad</label>
-    <input type="text" class="form-control" id="name" >
+    <input formControlName="userName" [ngModel]="setUserId()" type="text" class="form-control" id="name" readonly>
   </div>
   <div class="mb-3">
     <label for="email" class="form-label">E-Mail</label>
-    <input type="text" class="form-control" id="email" >
+    <input type="text" formControlName="eMail"   class="form-control" id="email" readonly>
+  </div>
+  <div class="mb-3">
+    <input type="hidden" formControlName="placeId" class="form-control" [ngModel]="placeId" id="placeId" readonly >
   </div>
 
   <div class="mb-3">
-    <label for="comment" class="form-label">Yorum Yap</label>
-    <textarea class="form-control" aria-label="With textarea" id="comment"></textarea>
+    <label for="comment" class="form-label">Yorum Yaz</label>
+    <textarea class="form-control" formControlName="comments" aria-label="With textarea" id="comment"></textarea>
   </div>
+</form>
+<div class="card-footer" class="d-grid gap-2">
+  <button type="button" class="btn btn-primary btn-lg" (click)="add()">Yorum Yap</button>
+  
+</div>
+
+
 
   

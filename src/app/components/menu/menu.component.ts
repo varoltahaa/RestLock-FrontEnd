@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
 
   @Input() name:any
 
-  menuDetails:MenuDetail[]=[];
+  menuDetails:MenuDetail;
   menus:Menu[]=[];
   constructor(private menuService:MenuService,private activatedRoute:ActivatedRoute) { }
 
@@ -23,7 +23,6 @@ export class MenuComponent implements OnInit {
         this.getByMenuDetail(params["placeId"])
       }
     })
-
   }
 
   getMenu(){
@@ -36,7 +35,8 @@ export class MenuComponent implements OnInit {
   getByMenuDetail(placeId:number){
     console.log(Number);
     this.menuService.getByMenuDetail(placeId).subscribe((response)=>{
-      this.menuDetails;
+      console.log(Number);
+      this.menuDetails = response.data
     })
   }
 

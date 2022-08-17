@@ -7,6 +7,12 @@ import { SwiperModule } from 'swiper/angular';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MatTabsModule} from '@angular/material/tabs'
 import {MatCardModule} from '@angular/material/card';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -61,6 +67,11 @@ import { PlaceImageListComponent } from './components/place-image-list/place-ima
     FileUploadModule,
     MatTabsModule,
     MatCardModule,
+    MatPaginatorModule,
+    MatGridListModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatIconModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),

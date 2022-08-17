@@ -5,6 +5,11 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { PlaceImage } from 'src/app/models/placeImage';
 import { PlaceImageService } from 'src/app/services/place-ımage.service';
 import { ActivatedRoute } from '@angular/router';
+import { PlaceService } from 'src/app/services/place.service';
+import { Place } from 'src/app/models/place';
+import { LocalStoreServiceService } from 'src/app/services/local-store-service.service';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-place-image',
@@ -14,10 +19,12 @@ import { ActivatedRoute } from '@angular/router';
 export class PlaceImageComponent implements OnInit {
 
 
+  place:Place[]=[]
   placeImage:PlaceImage[]=[];
   placeImageAddForm:FormGroup;
   fileToUpload:File 
-  constructor(private httpClient:HttpClient, private activatedRoute:ActivatedRoute, private placeImageService:PlaceImageService, private tostrService:ToastrService, private formBuilder:FormBuilder) { }
+
+  constructor(private httpClient:HttpClient , private activatedRoute:ActivatedRoute,private placeService:PlaceService , private placeImageService:PlaceImageService, private tostrService:ToastrService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
     this.createPlaceImageAddForm();
@@ -30,15 +37,6 @@ export class PlaceImageComponent implements OnInit {
     })
   }
 
-
-  // add(){
-  //   if (this.placeImageAddForm.valid) {
-  //     let placeImageModel = Object.assign({},this.placeImageAddForm.value)
-  //     this.placeImageService.add(placeImageModel).subscribe((response)=>{
-  //     })
-  //   }
-
-  // }
 
   handleFileInput(event:any) {
     this.fileToUpload = event.target.files[0];
@@ -59,6 +57,12 @@ export class PlaceImageComponent implements OnInit {
   getPlace(){
     this.placeImageService.getPlaceImages().subscribe((response)=>{
       console.log(response)
+    })
+  }
+
+  getPlaceByUserId(userId:number){
+    this.placeService.getPlaceByUserId(userId).subscribe((response)=>{
+      this.place = response.data
     })
   }
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ListResponseModel } from '../models/listResponseModel';
+import { ListResponseModel,ObjectResponseModel } from '../models/listResponseModel';
 import { Menu } from '../models/menu';
 import { MenuDetail } from '../models/menuDetail';
 
@@ -20,9 +20,9 @@ export class MenuService {
     return this.httpClient.get<ListResponseModel<Menu>>(newPath)
 }
 
-  getByMenuDetail(placeId:number):Observable<ListResponseModel<MenuDetail>>{
+  getByMenuDetail(placeId:number):Observable<ObjectResponseModel<MenuDetail>>{
     let newPath = this.apiUrl + "Menus/getbymenudetail?placeId="+placeId
-    return this.httpClient.get<ListResponseModel<MenuDetail>>(newPath)
+    return this.httpClient.get<ObjectResponseModel<MenuDetail>>(newPath)
   }
 
 }

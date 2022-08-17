@@ -12,6 +12,7 @@ import { PlaceImageService } from 'src/app/services/place-ımage.service';
 import { PlaceService } from 'src/app/services/place.service';
 import { UserService } from 'src/app/services/user.service';
 import * as L from 'leaflet';
+import { registerLocaleData } from '@angular/common';
 
 @Component({
   selector: 'app-place-add',
@@ -23,12 +24,12 @@ export class PlaceAddComponent implements OnInit {
   marker: any;
   pos: string;  
  
-  latitude:number;
+  latitude:number; 
   longitude:number;
   placeImageAddForm:FormGroup;
   placeAddForm:FormGroup;
   placeCategories:PlaceCategory[];
-  users:User[];
+  users:User;
   email = this.localStoreService.get('email');
   
   constructor(private formBuilder:FormBuilder,private localStoreService:LocalStoreServiceService, private userService:UserService,private placeService:PlaceService, private toastrService:ToastrService, private placeCategoryService:PlaceCategoryServiceService,private placeImageService:PlaceImageService) { }
@@ -36,9 +37,11 @@ export class PlaceAddComponent implements OnInit {
   ngOnInit(): void {
     this.createPlaceAddForm();
     this.getPlaceCategory();
+    this.getEmail();
   }
 
   createPlaceAddForm(){
+
     this.placeAddForm = this.formBuilder.group({
       userId:["",Validators.required],
       placeCategoryId:["",Validators.required],
@@ -50,6 +53,7 @@ export class PlaceAddComponent implements OnInit {
       description:["",Validators.required],
       latitude:["",Validators.required],
       longitude:["",Validators.required]
+
     })
   }
 
@@ -68,21 +72,24 @@ export class PlaceAddComponent implements OnInit {
     }
   }
 
+  setUserId(){
+    this.placeAddForm.controls['userId'].setValue(this.users?.userId)
+  }
+  setLocation(){
+    this.placeAddForm.controls['latitude'].setValue(this.latitude)
+    this.placeAddForm.controls['longitude'].setValue(this.longitude)
+  }
+
 
   getCoords(){
-      navigator.geolocation.getCurrentPosition(function(pos:any){
-        let x= pos.coords.latitude
-        let y= pos.coords.longitude
+      navigator.geolocation.getCurrentPosition(pos=>{
+        this.latitude = pos.coords.latitude
+       this.longitude= pos.coords.longitude
         let speed =pos.coords.accuracy
-        console.log(x,y,speed)
-      }.bind(this))
+      })
 }
 
-  getUser(){
-    this.userService.getUser().subscribe(response=>{
-      this.users = response.data
-    })
-  }
+
 
   getPlaceCategory(){
     this.placeCategoryService.getPlaceCategories().subscribe(response=>{
@@ -90,41 +97,17 @@ export class PlaceAddComponent implements OnInit {
     })
   }
 
-  checkToEmail(){
-    if (localStorage.getItem('email')) 
-    {
-      return true;
-    }else{
-      return false;
+
+  getEmail(){
+    if (this.email) {
+      
+      this.userService.getByMail(this.email).subscribe(response => {
+        this.users = response.data;
+        
+      })
     }
   }
   
 
-
-  getLocation(){
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      id: 'mapbox/streets-v11',
-      tileSize: 512,
-      zoomOffset: -1,
-    });
-    let map = L.map('map', {
-      center: [38 , 39],
-      zoom: 8,
-    });
-    L.marker([38, 39]).bindPopup('').addTo(map);
-
-    const tiles = L.tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {
-        maxZoom: 18,
-        minZoom: 3,
-      }
-    );
-    tiles.addTo(map);
-    setTimeout(() => {
-      map.invalidateSize();
-    }, 1);
-  }
 
 }

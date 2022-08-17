@@ -1,15 +1,14 @@
-<div style="margin-top:5%" class="container">
+<div  style="margin-top:5%" class="container">
 
 
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header"><h5 class="title">Mekan Ekle</h5></div>
+    <div  class="col-md-12">
+        <div  class="card">
+            <div  class="card-header"><h5 class="title">Mekan Ekle</h5></div>
             <div class="card-body">
-                <form [formGroup]="placeAddForm" action="">
-                    <div class="mb-3">
-                        <div   class="form-group">
-                            <label style="font-weight:bold;" for="userId">User Id</label>
-                            <input  type="number" id="userId" formControlName="userId" class="form-control"   placeholder="User ıd"/> 
+                <form [formGroup]="placeAddForm" >
+                    <div  class="mb-3">
+                        <div  class="form-group">
+                                <input  type="hidden" id="userId" formControlName="userId" class="form-control" [value]="setUserId()" readonly/>
                         </div>
                         </div>
                     <div class="mb-3">
@@ -35,28 +34,29 @@
                     </div>
                     <div class="mb-3">
                     <div class="form-group">
-                        <label style="font-weight:bold;" for="placeAddress">Adres</label>
-                        <input type="text" id="placeAddress" formControlName="placeAddress" class="form-control" placeholder="Adres"/> 
+                        <label style="font-weight:bold;" for="placeAddress">Açık Adres</label>
+                        <input type="text" id="placeAddress" formControlName="placeAddress" class="form-control" placeholder="Açık Adres"/> 
                     </div>
                     </div>
                     <div class="mb-3">
                         <div class="form-group">
                         <label style="font-weight:bold;" for="openTime">Açılış Saati</label>
-                        <input type="datetime" id="openTime" formControlName="openTime" class="form-control" placeholder="00:00:00"/> 
+                        <input type="datetime" id="openTime" formControlName="openTime" class="form-control" placeholder="00:00:00"/>
                     </div>
                     </div>
                     <div class="mb-3">
                     <div class="form-group">
                         <label style="font-weight:bold;" for="closeTime">Kapanış Saati</label>
-                        <input type="datetime" id="closeTime" formControlName="closeTime" class="form-control" placeholder="00:00:00"/> 
+                        <input type="datetime" id="closeTime" formControlName="closeTime" class="form-control" placeholder="00:00:00"/>
                     </div>
                     </div>
     
-                        <div  class="mb-3; form-group">
-                            <input  type="number" id="closeTime"  class="form-control" placeholder="Latitude"/> 
-                            <input style="margin-top:1%" type="number" id="closeTime"  class="form-control" placeholder="Longitude"/> 
+                         <div  class="mb-3; form-group">
+
+                                <input  type="number" id="closeTime"  class="form-control" formControlName="latitude" [value]="setLocation()"/> 
+                                <input style="margin-top:1%" type="number" id="closeTime" formControlName="longitude"  class="form-control" [value]="setLocation()"/>
                             <button style="margin-top:1%" class="btn btn-info" (click)="getCoords()">Konumu Getir</button>
-                          </div>
+                          </div> 
 
                     <div style="margin-top:1%" class="mb-3">
                     <div class="form-group">

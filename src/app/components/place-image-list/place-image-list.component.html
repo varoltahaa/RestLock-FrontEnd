@@ -1,4 +1,4 @@
-<div style="margin-top:4%" class="container">
+<!-- <div style="margin-top:4%" class="container">
       <div  class="row">
     <div  class="col-sm-4 mb-4 ">
       <div *ngFor="let place of placeImages"  class="card"> 
@@ -6,4 +6,13 @@
       </div>
     </div>
   </div>
-  </div>
+  </div> -->
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile >  
+        <div style="margin-left:5%" *ngFor="let place of placeImages"  class="card"> 
+      <img src="{{place.imagePath}}" class="card-img-top" alt="">
+    </div>
+    </mat-grid-tile>
+
+
+  </mat-grid-list>
