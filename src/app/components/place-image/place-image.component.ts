@@ -23,11 +23,15 @@ export class PlaceImageComponent implements OnInit {
   placeImage:PlaceImage[]=[];
   placeImageAddForm:FormGroup;
   fileToUpload:File 
+  user:User
+  userId:number
+  email = this.localStoreService.get('email');
 
-  constructor(private httpClient:HttpClient , private activatedRoute:ActivatedRoute,private placeService:PlaceService , private placeImageService:PlaceImageService, private tostrService:ToastrService, private formBuilder:FormBuilder) { }
+  constructor(private httpClient:HttpClient, private userService:UserService ,private localStoreService:LocalStoreServiceService, private activatedRoute:ActivatedRoute,private placeService:PlaceService , private placeImageService:PlaceImageService, private tostrService:ToastrService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
     this.createPlaceImageAddForm();
+    this.getEmail();
   }
 
   createPlaceImageAddForm(){
@@ -64,6 +68,17 @@ export class PlaceImageComponent implements OnInit {
     this.placeService.getPlaceByUserId(userId).subscribe((response)=>{
       this.place = response.data
     })
+  }
+
+
+
+  getEmail(){
+    if (this.email) {
+      this.userService.getByMail(this.email).subscribe(response => {
+        this.user = response.data;
+        this.getPlaceByUserId(this.user.userId)
+      })
+    }
   }
 
 }

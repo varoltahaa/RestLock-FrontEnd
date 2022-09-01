@@ -27,4 +27,9 @@ export class CommentServiceService {
     let newPath = this.apiUrl+"Comments/add"
     return this.httpClient.post<ResponseModel>(newPath,comment)
   }
+
+  delete(comment:Comments):Observable<ResponseModel>{
+    let newPath = this.apiUrl+"Comments/delete"
+    return this.httpClient.post<ResponseModel>(newPath,comment)
+  }
 }

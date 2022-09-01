@@ -12,6 +12,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -35,6 +37,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import Swiper from 'swiper';
 import { CommentComponent } from './components/comment/comment.component';
 import { PlaceImageListComponent } from './components/place-image-list/place-image-list.component';
+import { CommentListComponent } from './components/comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,7 @@ import { PlaceImageListComponent } from './components/place-image-list/place-ima
     MenuComponent,
     CommentComponent,
     PlaceImageListComponent,
+    CommentListComponent,
     
   ],
   imports: [
@@ -72,6 +76,8 @@ import { PlaceImageListComponent } from './components/place-image-list/place-ima
     MatBadgeModule,
     MatButtonModule,
     MatIconModule,
+    MatTableModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),

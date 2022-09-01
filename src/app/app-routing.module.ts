@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './components/admin/admin.component';
+import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:"admin/places/add",component:PlaceAddComponent, canActivate:[LoginGuard]},
   {path:"admin/menu",component:MenuComponent, canActivate:[LoginGuard]},
   {path:"admin/uploadPhoto",component:PlaceImageComponent, canActivate:[LoginGuard]},
+  {path:"admin/comments",component:CommentListComponent, canActivate:[LoginGuard]},
   {path:"login",component:LoginComponent},
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},

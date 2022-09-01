@@ -3,7 +3,11 @@
             <div style="margin-top:10%"  class="mb-3">
         <div class="form-group">
             <label style="font-weight:bold;" for="imagePath">Mekan Id</label>
-            <input type="text" id="imagePath" formControlName="placeId" class="form-control" placeholder="Mekan Id"/> 
+            <div class="form-group">
+                <select  class="form-control" formControlName="placeId">
+                  <option *ngFor="let places of place"  [ngValue]="places.placeId" >{{places.placeName}}</option>
+                </select>
+              </div>
         </div>
         </div>
     <div class="mb-3">

@@ -13,6 +13,9 @@ export class PlaceComponent implements OnInit {
   dataLoaded = false;
   filterText = '';
 
+
+
+
   constructor(
     private placeService: PlaceService,
     private activatedRoute: ActivatedRoute
@@ -27,6 +30,7 @@ export class PlaceComponent implements OnInit {
       }
     });
   }
+
 
   getPlaces() {
     this.placeService.getPlaces().subscribe((response) => {

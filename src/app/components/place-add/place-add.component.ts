@@ -24,8 +24,8 @@ export class PlaceAddComponent implements OnInit {
   marker: any;
   pos: string;  
  
-  latitude:number; 
-  longitude:number;
+  latitude:string; 
+  longitude:string;
   placeImageAddForm:FormGroup;
   placeAddForm:FormGroup;
   placeCategories:PlaceCategory[];
@@ -83,8 +83,8 @@ export class PlaceAddComponent implements OnInit {
 
   getCoords(){
       navigator.geolocation.getCurrentPosition(pos=>{
-        this.latitude = pos.coords.latitude
-       this.longitude= pos.coords.longitude
+        this.latitude = pos.coords.latitude.toString()
+       this.longitude= pos.coords.longitude.toString()
         let speed =pos.coords.accuracy
       })
 }

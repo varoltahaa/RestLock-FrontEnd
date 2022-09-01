@@ -97,15 +97,13 @@
       </div>
       <div class="col-md-6">
         <div
-          class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        >
+          class="row g-0 border rounded overflow-hidden flex-md-row mb-2 shadow-sm h-md-250 position-relative">
           <div id="map" class="col p-4 d-flex flex-column position-static">
             <!-- Harita Burada -->
           </div>
-          
-          <div class="col-auto d-none d-lg-block"></div>
         </div>
-        <a mat-raised-button href="https://www.google.com/maps/dir/?api=1&origin={{latitude}},{{longitude}}&destination={{currentPlaceDetails?.latitude}},{{currentPlaceDetails?.longitude}}"  target="_blank">Rota Oluştur</a>      
+        <a class="btn btn-warning bi bi-arrow-90deg-right"  href="https://www.google.com/maps/dir/?api=1&origin={{latitude}},{{longitude}}&destination={{currentPlaceDetails?.latitude}},{{currentPlaceDetails?.longitude}}"  target="_blank" role="button">  Yol Tarifi</a> 
+        <!-- <a mat-raised-button href="https://www.google.com/maps/dir/?api=1&origin={{latitude}},{{longitude}}&destination={{currentPlaceDetails?.latitude}},{{currentPlaceDetails?.longitude}}"  target="_blank"  class="bi bi-arrow-90deg-right">Yol Tarifi</a>     -->
       </div>
     </div>
 
@@ -122,13 +120,13 @@
       <div class="col-md-4">
         <div class="position-sticky" style="top: 2rem">
           <div class="p-4 mb-3 bg-light rounded">
-            <h4 class="fst-italic">Mekan Hakkında</h4>
+            <h2 class="fst-italic">Mekan Hakkında</h2>
             <p class="mb-0">{{ currentPlaceDetails?.description }}</p>
           </div>
 
 
           <div class="p-4">
-            <h4 class="fst-italic">Sosyal Medya Hesapları</h4>
+            <h2 class="fst-italic">Sosyal Medya Hesapları</h2>
             <ol class="list-unstyled">
               <li>
                 <a style="text-decoration: none" class="bi bi-laptop" href="#">
@@ -170,3 +168,5 @@
     crossorigin=""
   ></script>
 </body>
+
+

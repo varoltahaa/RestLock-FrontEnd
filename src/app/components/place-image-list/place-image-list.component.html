@@ -1,18 +1,46 @@
-<!-- <div style="margin-top:4%" class="container">
-      <div  class="row">
-    <div  class="col-sm-4 mb-4 ">
-      <div *ngFor="let place of placeImages"  class="card"> 
-            <img src="{{place.imagePath}}" class="card-img-top" alt="">
+<body>
+  <div class="container">
+
+  <div style="margin-top:4%">
+    <div  class="row row-cols-4">
+
+    <div style="margin-bottom:4%" *ngFor="let place of placeImages" > 
+      <img type="button" data-toggle="modal" data-target="#exampleModal" src="{{place.imagePath}}" class="card-img-top rounded ">
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
   </div>
-  </div> -->
-  <mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile >  
-        <div style="margin-left:5%" *ngFor="let place of placeImages"  class="card"> 
-      <img src="{{place.imagePath}}" class="card-img-top" alt="">
-    </div>
-    </mat-grid-tile>
+</div>
+</div>
+
+</div>
 
 
-  </mat-grid-list>
+
+
+
+
+
+
+
+
+
+

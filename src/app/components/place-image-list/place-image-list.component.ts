@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PlaceImage } from 'src/app/models/placeImage';
 import { PlaceImageService } from 'src/app/services/place-ımage.service';
 
+
+
 @Component({
   selector: 'app-place-image-list',
   templateUrl: './place-image-list.component.html',
@@ -29,4 +31,9 @@ export class PlaceImageListComponent implements OnInit {
         this.placeImages = response.data;
       });
   }
+
+
+
+
+  
 }

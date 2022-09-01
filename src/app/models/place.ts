@@ -10,6 +10,6 @@ export interface Place{
     openTime:Date;
     closeTime:Date;
     description:string;
-    latitude:number;
-    longitude:number;
+    latitude:string;
+    longitude:string;
 }

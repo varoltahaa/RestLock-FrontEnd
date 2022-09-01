@@ -19,8 +19,8 @@ import { LocalStoreServiceService } from 'src/app/services/local-store-service.s
 })
 export class PlaceDetailComponent implements OnInit {
   
-  latitude:number;
-  longitude:number;
+  latitude:string;
+  longitude:string;
   count = 0
   map: any;
   marker: any;
@@ -54,8 +54,9 @@ export class PlaceDetailComponent implements OnInit {
     this.placeService.getPlaceById(placeId).subscribe((response) => {
       this.currentPlaceDetails = response.data;
       this.placeId = response.data.placeId
-      let x = this.currentPlaceDetails.latitude
+     let x = this.currentPlaceDetails.latitude
     let y = this.currentPlaceDetails.longitude
+
     let placeAddress = this.currentPlaceDetails.placeAddress
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       id: 'mapbox/streets-v11',
@@ -66,12 +67,12 @@ export class PlaceDetailComponent implements OnInit {
 
     
     let map = L.map('map', {
-      center: [x , y],
+      center: [parseInt(x) , parseInt(y)],
       zoom: 15,
     });
 
     
-    L.marker([x, y]).bindPopup(placeAddress).addTo(map);
+    L.marker([parseInt(x) , parseInt(y)]).bindPopup(placeAddress).addTo(map);
     
 
     const tiles = L.tileLayer(
@@ -104,10 +105,11 @@ export class PlaceDetailComponent implements OnInit {
 
   getCoords(){
     navigator.geolocation.getCurrentPosition(pos=>{
-      this.latitude = pos.coords.latitude
-     this.longitude= pos.coords.longitude
+      this.latitude = pos.coords.latitude.toString()
+     this.longitude= pos.coords.longitude.toString()
     })
 }
+
 
 
 }
